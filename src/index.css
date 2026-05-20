@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+@import "tailwindcss";
+
+@theme {
+  --color-midnight: #0F172A;
+  --color-midnight-light: #1E293B;
+  --color-gold: #D4AF37;
+  --color-gold-light: #FDE047;
+  --color-cosmic: #6D28D9;
+  --color-cosmic-light: #8B5CF6;
+  --color-cosmic-glow: rgba(109, 40, 217, 0.5);
+
+  --font-serif: "Nanum Myeongjo", serif;
+  --font-sans: "Pretendard", "Noto Sans KR", sans-serif;
+  
+  --animate-sparkle: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+body {
+  @apply bg-midnight text-slate-100 font-sans antialiased overflow-x-hidden;
+  background-image: radial-gradient(circle at 50% 0%, #1E293B 0%, #0F172A 70%);
+  background-attachment: fixed;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}

@@ -1,0 +1,6 @@
+{
+  "name": "핸들생일타로",
+  "description": "생년월일을 이용해 나의 운명을 알려주는 신비로운 타로 서비스",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
