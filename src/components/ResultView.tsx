@@ -79,27 +79,8 @@ export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
            </div>
 
            {/* 뒷면 (타로카드 내용) */}
-           <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-slate-900 border-2 border-gold rounded-2xl p-4 flex flex-col items-center justify-between shadow-[0_0_30px_rgba(212,175,55,0.15)] overflow-hidden">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none" />
-              
-              <div className="w-full text-center border-b border-gold/30 pb-2">
-                 <div className="text-gold font-serif text-3xl mb-1">{c.id}</div>
-              </div>
-              
-              <div className="flex-1 flex flex-col items-center justify-center w-full z-10 text-center">
-                 <h3 className="font-serif text-[1.3rem] leading-tight font-bold text-white mb-1">
-                   {TAROT_DECK[c.id].name}
-                 </h3>
-                 <p className="text-[10px] text-gold/80 font-serif tracking-widest uppercase">
-                   {TAROT_DECK[c.id].nameEn}
-                 </p>
-              </div>
-
-              <div className="w-full border-t border-gold/30 pt-3 text-center px-1">
-                 <p className="text-[11px] text-slate-300 leading-tight">
-                   {TAROT_DECK[c.id].keyword}
-                 </p>
-              </div>
+           <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
+              <img src={TAROT_DECK[c.id].imageUrl} alt={TAROT_DECK[c.id].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
            </div>
          </motion.div>
       </div>

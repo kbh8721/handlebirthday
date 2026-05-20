@@ -25,12 +25,15 @@ export function CardListView({ onBack, key }: { key?: string; onBack: () => void
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {cards.map(card => (
           <div key={card.id} className="bg-midnight-light border border-slate-700/50 rounded-2xl p-6 hover:border-gold/50 transition-colors group">
-            <div className="flex items-end justify-between mb-4 border-b border-slate-700 pb-3">
-              <span className="font-serif text-2xl text-gold group-hover:scale-110 transition-transform origin-bottom-left">
-                {card.id}
-              </span>
-              <div className="text-right">
-                <h3 className="font-serif text-lg text-white">{card.name}</h3>
+            <div className="flex gap-4 mb-4 border-b border-slate-700 pb-4">
+              <div className="w-24 shrink-0 rounded-lg overflow-hidden border border-gold/30">
+                <img src={card.imageUrl} alt={card.name} referrerPolicy="no-referrer" className="w-full h-auto object-cover" />
+              </div>
+              <div className="flex flex-col justify-end">
+                <span className="font-serif text-3xl text-gold group-hover:scale-110 transition-transform origin-bottom-left leading-none mb-2">
+                  {card.id}
+                </span>
+                <h3 className="font-serif text-xl text-white">{card.name}</h3>
                 <span className="text-[10px] text-slate-400 tracking-widest uppercase">{card.nameEn}</span>
               </div>
             </div>

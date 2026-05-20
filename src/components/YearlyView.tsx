@@ -26,11 +26,8 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
     return (
       <div className="flex flex-col items-center">
         <span className="text-[10px] text-slate-400 mb-1">{isSolar ? '양력' : '음력'}</span>
-        <div className="w-16 h-24 bg-slate-900 border border-gold/40 rounded-md p-1 flex flex-col items-center justify-center shadow-lg shadow-black/50">
-          <div className="text-gold font-serif text-sm">{cardId}</div>
-          <div className="text-[8px] text-slate-300 text-center leading-tight mt-1 truncate w-full px-1">
-            {TAROT_DECK[cardId].name}
-          </div>
+        <div className="w-16 h-24 bg-slate-900 border border-gold/40 rounded-md overflow-hidden flex flex-col items-center justify-center shadow-lg shadow-black/50">
+          <img src={TAROT_DECK[cardId].imageUrl} alt={TAROT_DECK[cardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
         </div>
       </div>
     );
@@ -89,21 +86,8 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
             </h4>
             
             <div className="relative w-48 aspect-[2/3] perspective-1000 mb-6">
-              <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl p-4 flex flex-col items-center justify-between shadow-[0_0_30px_rgba(212,175,55,0.15)] overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none" />
-                <div className="w-full text-center border-b border-gold/30 pb-2">
-                   <div className="text-gold font-serif text-3xl mb-1">{lunarCardId}</div>
-                </div>
-                <div className="flex-1 flex flex-col items-center justify-center w-full z-10 text-center">
-                   <h3 className="font-serif text-[1.3rem] leading-tight font-bold text-white mb-1">
-                     {TAROT_DECK[lunarCardId].name}
-                   </h3>
-                </div>
-                <div className="w-full border-t border-gold/30 pt-3 text-center px-1">
-                   <p className="text-[11px] text-slate-300 leading-tight">
-                     {TAROT_DECK[lunarCardId].keyword}
-                   </p>
-                </div>
+              <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
+                <img src={TAROT_DECK[lunarCardId].imageUrl} alt={TAROT_DECK[lunarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
             </div>
 
@@ -124,21 +108,8 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
             </h4>
             
             <div className="relative w-48 aspect-[2/3] perspective-1000 mb-6">
-              <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl p-4 flex flex-col items-center justify-between shadow-[0_0_30px_rgba(212,175,55,0.15)] overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gold/10 via-transparent to-transparent pointer-events-none" />
-                <div className="w-full text-center border-b border-gold/30 pb-2">
-                   <div className="text-gold font-serif text-3xl mb-1">{solarCardId}</div>
-                </div>
-                <div className="flex-1 flex flex-col items-center justify-center w-full z-10 text-center">
-                   <h3 className="font-serif text-[1.3rem] leading-tight font-bold text-white mb-1">
-                     {TAROT_DECK[solarCardId].name}
-                   </h3>
-                </div>
-                <div className="w-full border-t border-gold/30 pt-3 text-center px-1">
-                   <p className="text-[11px] text-slate-300 leading-tight">
-                     {TAROT_DECK[solarCardId].keyword}
-                   </p>
-                </div>
+              <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
+                <img src={TAROT_DECK[solarCardId].imageUrl} alt={TAROT_DECK[solarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
             </div>
 
