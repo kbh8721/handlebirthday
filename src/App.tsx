@@ -4,6 +4,7 @@ import { InputView } from './components/InputView';
 import { CalculationView } from './components/CalculationView';
 import { ResultView } from './components/ResultView';
 import { CardListView } from './components/CardListView';
+import { YearlyView } from './components/YearlyView';
 import { drawCards, TarotDrawResult } from './utils';
 
 /**
@@ -12,7 +13,7 @@ import { drawCards, TarotDrawResult } from './utils';
  */
 
 export default function App() {
-  const [step, setStep] = useState<'input' | 'calculating' | 'result' | 'list'>('input');
+  const [step, setStep] = useState<'input' | 'calculating' | 'result' | 'list' | 'yearly'>('input');
   const [result, setResult] = useState<TarotDrawResult | null>(null);
 
   const handleSubmit = (y: number, m: number, d: number, isLunar: boolean) => {
@@ -52,7 +53,15 @@ export default function App() {
               onReset={() => {
                 setResult(null);
                 setStep('input');
-              }} 
+              }}
+              onViewYearly={() => setStep('yearly')}
+            />
+          )}
+          {step === 'yearly' && result && (
+            <YearlyView 
+              key="yearly" 
+              result={result} 
+              onBack={() => setStep('result')} 
             />
           )}
           {step === 'list' && (

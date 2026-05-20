@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
-import { Share2, RotateCcw } from 'lucide-react';
+import { Share2, RotateCcw, CalendarDays } from 'lucide-react';
 import { TAROT_DECK } from '../tarotData';
 import { TarotDrawResult } from '../utils';
 
@@ -9,9 +9,10 @@ interface ResultViewProps {
   key?: string;
   result: TarotDrawResult;
   onReset: () => void;
+  onViewYearly: () => void;
 }
 
-export function ResultView({ result, onReset }: ResultViewProps) {
+export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
   const [revealed, setRevealed] = useState([false, false, false, false]);
 
   useEffect(() => {
@@ -174,6 +175,9 @@ export function ResultView({ result, onReset }: ResultViewProps) {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 pt-8 border-t border-slate-700/50">
+              <button onClick={onViewYearly} className="flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30 hover:border-gold py-3 px-6 rounded-xl transition-colors font-medium">
+                <CalendarDays className="w-4 h-4" /> 올해의 카드 보기
+              </button>
               <button onClick={handleShare} className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white py-3 px-6 rounded-xl transition-colors font-medium">
                 <Share2 className="w-4 h-4" /> 결과 공유하기
               </button>

@@ -24,6 +24,10 @@ export function calculateTarotNumber(year: number, month: number, day: number): 
   return result;
 }
 
+export function getYearlyCardNumber(targetYear: number, birthMonth: number, birthDay: number): number {
+  return calculateTarotNumber(targetYear, birthMonth, birthDay);
+}
+
 export interface TarotDrawResult {
   solarCard: number;
   lunarCard: number;
