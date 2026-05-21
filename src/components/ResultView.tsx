@@ -97,11 +97,11 @@ export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
 
       <div className="flex flex-col gap-10 w-full mb-16 items-center">
         {/* 상단 2장 (음력, 양력) */}
-        <div className="flex flex-col md:flex-row gap-6 w-full justify-center items-center">
+        <div className="flex flex-row gap-4 md:gap-6 w-full justify-center items-center">
           {topCards.map(renderCard)}
         </div>
         {/* 하단 2장 (중간수 1, 2) */}
-        <div className="flex flex-col md:flex-row gap-6 w-full justify-center items-center">
+        <div className="flex flex-row gap-4 md:gap-6 w-full justify-center items-center">
           {bottomCards.map(renderCard)}
         </div>
       </div>

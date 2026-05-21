@@ -78,24 +78,24 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
           </p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-12 w-full justify-center">
+        <div className="flex flex-row gap-4 md:gap-12 w-full justify-center">
           {/* 음력 카드 */}
           <div className="flex-1 flex flex-col items-center">
-            <h4 className="text-lg text-gold mb-6 font-serif tracking-widest text-center border-b border-gold/30 pb-2 inline-block">
+            <h4 className="text-sm md:text-lg text-gold mb-6 font-serif tracking-widest text-center border-b border-gold/30 pb-2 inline-block">
               올해의 음력 (전반기)
             </h4>
             
-            <div className="relative w-48 aspect-[2/3] perspective-1000 mb-6">
+            <div className="relative w-full max-w-[192px] aspect-[2/3] perspective-1000 mb-6">
               <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
                 <img src={TAROT_DECK[lunarCardId].imageUrl} alt={TAROT_DECK[lunarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            <div className="px-4 text-center">
-              <p className="text-sm text-slate-300 font-light leading-relaxed">
+            <div className="px-2 md:px-4 text-center">
+              <p className="text-xs md:text-sm text-slate-300 font-light leading-relaxed hidden md:block">
                 그 해 상반기까지 흘러가는 에너지이면서 끌리는 성향을 나타냅니다.
               </p>
-              <div className="mt-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50 text-slate-200 text-sm italic">
+              <div className="mt-4 p-3 md:p-4 bg-slate-900/50 rounded-lg border border-slate-700/50 text-slate-200 text-xs md:text-sm italic line-clamp-3 md:line-clamp-none">
                 {TAROT_DECK[lunarCardId].advice}
               </div>
             </div>
@@ -103,21 +103,21 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
 
           {/* 양력 카드 */}
           <div className="flex-1 flex flex-col items-center">
-            <h4 className="text-lg text-gold mb-6 font-serif tracking-widest text-center border-b border-gold/30 pb-2 inline-block">
+            <h4 className="text-sm md:text-lg text-gold mb-6 font-serif tracking-widest text-center border-b border-gold/30 pb-2 inline-block">
               올해의 양력 (후반기)
             </h4>
             
-            <div className="relative w-48 aspect-[2/3] perspective-1000 mb-6">
+            <div className="relative w-full max-w-[192px] aspect-[2/3] perspective-1000 mb-6">
               <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
                 <img src={TAROT_DECK[solarCardId].imageUrl} alt={TAROT_DECK[solarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
               </div>
             </div>
 
-            <div className="px-4 text-center">
-              <p className="text-sm text-slate-300 font-light leading-relaxed">
+            <div className="px-2 md:px-4 text-center">
+              <p className="text-xs md:text-sm text-slate-300 font-light leading-relaxed hidden md:block">
                 하반기에 중점적으로 흘러가는 에너지이자 그 해 성취해야 할 숙제입니다.
               </p>
-              <div className="mt-4 p-4 bg-slate-900/50 rounded-lg border border-slate-700/50 text-slate-200 text-sm italic">
+              <div className="mt-4 p-3 md:p-4 bg-slate-900/50 rounded-lg border border-slate-700/50 text-slate-200 text-xs md:text-sm italic line-clamp-3 md:line-clamp-none">
                 {TAROT_DECK[solarCardId].advice}
               </div>
             </div>
