@@ -1,4 +1,4 @@
-import { Lunar, Solar } from 'lunar-javascript';
+import KoreanLunarCalendar from 'korean-lunar-calendar';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -39,21 +39,22 @@ export interface TarotDrawResult {
 
 export function drawCards(inputY: number, inputM: number, inputD: number, isLunarInput: boolean): TarotDrawResult {
   let solarDate, lunarDate;
+  const calendar = new KoreanLunarCalendar();
   
   if (isLunarInput) {
     lunarDate = { y: inputY, m: inputM, d: inputD };
-    const l = Lunar.fromYmd(inputY, inputM, inputD);
-    const s = l.getSolar();
-    solarDate = { y: s.getYear(), m: s.getMonth(), d: s.getDay() };
+    calendar.setLunarDate(inputY, inputM, inputD, false);
+    const s = calendar.getSolarCalendar();
+    solarDate = { y: s.year, m: s.month, d: s.day };
   } else {
     solarDate = { y: inputY, m: inputM, d: inputD };
-    const s = Solar.fromYmd(inputY, inputM, inputD);
-    const l = s.getLunar();
-    lunarDate = { y: l.getYear(), m: Math.abs(l.getMonth()), d: l.getDay() };
+    calendar.setSolarDate(inputY, inputM, inputD);
+    const l = calendar.getLunarCalendar();
+    lunarDate = { y: l.year, m: l.month, d: l.day };
   }
   
-  const solarCard = calculateTarotNumber(solarDate.y, Math.abs(solarDate.m), solarDate.d);
-  const lunarCard = calculateTarotNumber(lunarDate.y, Math.abs(lunarDate.m), lunarDate.d);
+  const solarCard = calculateTarotNumber(solarDate.y, solarDate.m, solarDate.d);
+  const lunarCard = calculateTarotNumber(lunarDate.y, lunarDate.m, lunarDate.d);
   
   // 첫 번째 중간수: 음력카드 + 8 (22 이상일 경우 수비학적 환산)
   let middleCard1 = lunarCard + 8;
