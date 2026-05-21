@@ -26,8 +26,11 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
     return (
       <div className="flex flex-col items-center">
         <span className="text-[10px] text-slate-400 mb-1">{isSolar ? '양력' : '음력'}</span>
-        <div className="w-16 h-24 bg-slate-900 border border-gold/40 rounded-md overflow-hidden flex flex-col items-center justify-center shadow-lg shadow-black/50">
-          <img src={TAROT_DECK[cardId].imageUrl} alt={TAROT_DECK[cardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+        <div className="relative w-16 h-24 bg-slate-900 border border-gold/40 rounded-md overflow-hidden flex flex-col items-center justify-center shadow-lg shadow-black/50">
+          <img src={TAROT_DECK[cardId].imageUrl} alt={TAROT_DECK[cardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
+          <div className="absolute bottom-0 w-full h-[18%] bg-slate-900 flex items-center justify-center border-t border-gold/30">
+            <span className="text-gold font-serif font-semibold tracking-tighter text-[8px] whitespace-nowrap overflow-hidden text-ellipsis px-1">{TAROT_DECK[cardId].name}</span>
+          </div>
         </div>
       </div>
     );
@@ -87,7 +90,10 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
             
             <div className="relative w-full max-w-[192px] aspect-[2/3] perspective-1000 mb-6">
               <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
-                <img src={TAROT_DECK[lunarCardId].imageUrl} alt={TAROT_DECK[lunarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                <img src={TAROT_DECK[lunarCardId].imageUrl} alt={TAROT_DECK[lunarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
+                <div className="absolute bottom-0 w-full h-[15%] bg-slate-900 flex items-center justify-center border-t border-gold/30">
+                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[lunarCardId].name}</span>
+                </div>
               </div>
             </div>
 
@@ -109,7 +115,10 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
             
             <div className="relative w-full max-w-[192px] aspect-[2/3] perspective-1000 mb-6">
               <div className="absolute inset-0 bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
-                <img src={TAROT_DECK[solarCardId].imageUrl} alt={TAROT_DECK[solarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                <img src={TAROT_DECK[solarCardId].imageUrl} alt={TAROT_DECK[solarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
+                <div className="absolute bottom-0 w-full h-[15%] bg-slate-900 flex items-center justify-center border-t border-gold/30">
+                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[solarCardId].name}</span>
+                </div>
               </div>
             </div>
 

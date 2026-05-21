@@ -80,7 +80,10 @@ export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
 
            {/* 뒷면 (타로카드 내용) */}
            <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
-              <img src={TAROT_DECK[c.id].imageUrl} alt={TAROT_DECK[c.id].name} referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+              <img src={TAROT_DECK[c.id].imageUrl} alt={TAROT_DECK[c.id].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
+              <div className="absolute bottom-0 w-full h-[15%] bg-slate-900 flex items-center justify-center border-t border-gold/30">
+                <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[c.id].name}</span>
+              </div>
            </div>
          </motion.div>
       </div>
