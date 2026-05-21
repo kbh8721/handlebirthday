@@ -41,13 +41,38 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
       className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-md mx-auto px-6 relative"
     >
       <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+        {/* Sun Sequence */}
         <motion.div
-           animate={{ rotate: [90, -90], opacity: [0, 1, 1, 0] }}
-           transition={{ duration: 10, ease: "linear", repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
+           animate={{ 
+             rotate: [90, -90, 90], 
+             opacity: [0, 1, 1, 0, 0] 
+           }}
+           transition={{ 
+             rotate: { duration: 20, ease: "linear", repeat: Infinity, times: [0, 0.5, 1] },
+             opacity: { duration: 20, ease: "linear", repeat: Infinity, times: [0, 0.05, 0.45, 0.5, 1] }
+           }}
            className="absolute bottom-[-10vh] left-1/2 w-0 h-[70vh] origin-bottom"
         >
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-20 bg-yellow-500 rounded-full blur-[2px] shadow-[0_0_80px_rgba(234,179,8,1)] flex items-center justify-center">
             <div className="w-12 h-12 bg-yellow-200 rounded-full shadow-[0_0_40px_rgba(253,224,71,1)]"></div>
+          </div>
+        </motion.div>
+
+        {/* Moon and Large Star Sequence */}
+        <motion.div
+           animate={{ 
+             rotate: [-90, 90, -90], 
+             opacity: [0, 0, 1, 1, 0] 
+           }}
+           transition={{ 
+             rotate: { duration: 20, ease: "linear", repeat: Infinity, times: [0, 0.5, 1] },
+             opacity: { duration: 20, ease: "linear", repeat: Infinity, times: [0, 0.5, 0.55, 0.95, 1] }
+           }}
+           className="absolute bottom-[-10vh] left-1/2 w-0 h-[70vh] origin-bottom"
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center gap-6 pb-12">
+            {/* The Moon */}
+            <div className="w-16 h-16 bg-slate-100 rounded-full shadow-[0_0_60px_rgba(200,210,255,0.8),inset_-10px_-5px_15px_rgba(0,0,0,0.2)]"></div>
           </div>
         </motion.div>
       </div>
