@@ -70,7 +70,7 @@ export const TAROT_DECK: Record<number, TarotCard> = {
     keyword: "사랑, 조화, 중요한 선택",
     description: "사람들과의 조화로운 관계를 중시하며 매력이 넘칩니다. 두 가지 가치나 길 사이에서 마음을 따라 중요한 선택을 내려야 할 시기를 의미하기도 합니다.",
     advice: "가장 마음이 이끌리고 진정으로 사랑하는 것을 선택하세요.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3a/RWS_Tarot_06_Lovers.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg"
   },
   7: {
     id: 7,
@@ -196,7 +196,7 @@ export const TAROT_DECK: Record<number, TarotCard> = {
     keyword: "부활, 소명, 최종적인 결정",
     description: "잠들어 있던 당신의 진정한 재능이나 잠재력이 깨어납니다. 과거를 돌이켜보고 최종적인 보상이나 한 단계 높은 세상으로의 초대를 의미합니다.",
     advice: "당신을 부르는 새로운 목소리나 피할 수 없는 결정에 당당히 응답하세요.",
-    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgment.jpg"
+    imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg"
   },
   21: {
     id: 21,

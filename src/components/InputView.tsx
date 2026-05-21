@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Moon, Sun, ArrowRight } from 'lucide-react';
 import { cn } from '../utils';
+import shipWheelImg from '../assets/images/wooden_ship_wheel_1779330238783.png';
+import sphinxImg from '../assets/images/sphinx_icon_1779330254495.png';
 
 interface InputViewProps {
   key?: string;
@@ -36,31 +38,57 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-md mx-auto px-6"
+      className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-md mx-auto px-6 relative"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cosmic-glow rounded-full blur-[100px] -z-10 pointer-events-none" />
+      <div className="fixed inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
+        <motion.div
+           animate={{ rotate: [90, -90], opacity: [0, 1, 1, 0] }}
+           transition={{ duration: 10, ease: "linear", repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
+           className="absolute bottom-[-10vh] left-1/2 w-0 h-[70vh] origin-bottom"
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-20 bg-yellow-500 rounded-full blur-[2px] shadow-[0_0_80px_rgba(234,179,8,1)] flex items-center justify-center">
+            <div className="w-12 h-12 bg-yellow-200 rounded-full shadow-[0_0_40px_rgba(253,224,71,1)]"></div>
+          </div>
+        </motion.div>
+      </div>
       
-      <div className="text-center mb-10">
-        <h1 className="font-serif text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-yellow-600 mb-4 tracking-wider">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cosmic-glow rounded-full blur-[100px] pointer-events-none" style={{ zIndex: 0 }} />
+      
+      <div className="text-center mb-10 relative z-10">
+        <h1 className="font-serif text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-yellow-600 mb-4 tracking-wider relative z-10">
           핸들생일타로
         </h1>
-        <p className="text-slate-300 font-light tracking-wide text-sm md:text-base">
+        <p className="text-slate-300 font-light tracking-wide text-sm md:text-base relative z-10">
           방황하는 당신께 인생 핸들을
         </p>
       </div>
 
-      <div className="w-64 h-64 relative mb-12 flex items-center justify-center animate-spin-slow" style={{ animationDuration: '20s', animationTimingFunction: 'linear', animationIterationCount: 'infinite', animationName: 'spin' }}>
-         <svg viewBox="0 0 100 100" className="w-full h-full text-gold opacity-80" fill="none" stroke="currentColor" strokeWidth="1">
-            <circle cx="50" cy="50" r="45" strokeDasharray="4 4" />
-            <circle cx="50" cy="50" r="35" />
-            <path d="M 50 15 L 50 85 M 15 50 L 85 50" />
-            <path d="M 25 25 L 75 75 M 25 75 L 75 25" />
-            <circle cx="50" cy="50" r="10" fill="currentColor" />
-         </svg>
+      <div className="relative w-56 h-56 mx-auto mb-16 flex items-center justify-center z-10">
+        {/* The ship's wheel that spins */}
+        <motion.img
+           src={shipWheelImg}
+           alt="Ship's Wheel"
+           animate={{ rotate: [0, -360] }}
+           transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(212,175,55,0.2)] mix-blend-screen relative z-10"
+           referrerPolicy="no-referrer"
+        />
+        
+        {/* The Sphinx icon fixed at 12 o'clock */}
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 w-24 h-24 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(212,175,55,0.6)] bg-black">
+           <img 
+             src={sphinxImg} 
+             alt="Sphinx"
+             className="w-full h-full object-cover" 
+             referrerPolicy="no-referrer"
+           />
+        </div>
+
+        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-12 h-12 animate-pulse drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] z-20 mix-blend-screen" />
       </div>
 
-      <form onSubmit={handleSubmit} className="w-full space-y-6">
-        <div className="flex bg-midnight-light p-1 rounded-xl shadow-inner mx-auto w-48">
+      <form onSubmit={handleSubmit} className="w-full space-y-6 relative z-10">
+        <div className="flex bg-midnight-light p-1 rounded-xl shadow-[0_0_10px_rgba(212,175,55,0.3)] mx-auto w-48 border border-gold">
           <button
             type="button"
             className={cn(
@@ -90,7 +118,7 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
             pattern="\d*"
             maxLength={8}
             placeholder="생년월일 8자리 (예: 19950524)"
-            className="w-full bg-midnight-light/50 border border-slate-700 focus:border-gold outline-none rounded-xl py-4 px-6 text-center text-lg tracking-widest text-slate-100 placeholder:text-slate-600 transition-colors shadow-inner"
+            className="w-full bg-midnight-light/50 border border-gold focus:border-gold-light focus:shadow-[0_0_10px_rgba(212,175,55,0.4)] outline-none rounded-xl py-4 px-6 text-center text-lg tracking-widest text-slate-100 placeholder:text-slate-600 transition-all shadow-inner"
             value={dateStr}
             onChange={(e) => setDateStr(e.target.value.replace(/\D/g, ''))}
           />

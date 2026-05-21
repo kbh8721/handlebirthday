@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles } from 'lucide-react';
+import shipWheelImg from '../assets/images/wooden_ship_wheel_1779330238783.png';
+import sphinxImg from '../assets/images/sphinx_icon_1779330254495.png';
 
 interface CalculationViewProps {
   key?: string;
@@ -39,18 +41,28 @@ export function CalculationView({ onComplete }: CalculationViewProps) {
       exit={{ opacity: 0 }}
       className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-md mx-auto"
     >
-      <div className="relative w-32 h-32 mb-12">
-        <motion.div
-           animate={{ rotate: 360 }}
-           transition={{ duration: 4, ease: "linear", repeat: Infinity }}
-           className="w-full h-full rounded-full border-2 border-gold/30 border-t-gold border-b-cosmic"
+      <div className="relative w-48 h-48 mb-16">
+        {/* The ship's wheel that spins */}
+        <motion.img
+           src={shipWheelImg}
+           alt="Ship's Wheel"
+           animate={{ rotate: [0, -360] }}
+           transition={{ duration: 10, ease: "linear", repeat: Infinity }}
+           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(212,175,55,0.2)] mix-blend-screen"
+           referrerPolicy="no-referrer"
         />
-        <motion.div
-           animate={{ rotate: -360 }}
-           transition={{ duration: 3, ease: "linear", repeat: Infinity }}
-           className="absolute inset-2 rounded-full border border-cosmic-light/30 border-l-cosmic-light border-r-gold"
-        />
-        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-8 h-8 animate-pulse" />
+        
+        {/* The Sphinx icon fixed at 12 o'clock */}
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10 w-20 h-20 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(212,175,55,0.6)] bg-black">
+           <img 
+             src={sphinxImg} 
+             alt="Sphinx"
+             className="w-full h-full object-cover" 
+             referrerPolicy="no-referrer"
+           />
+        </div>
+
+        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-10 h-10 animate-pulse drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] z-10 mix-blend-screen" />
       </div>
 
       <motion.p 
