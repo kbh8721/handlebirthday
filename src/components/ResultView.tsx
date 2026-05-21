@@ -173,7 +173,7 @@ export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
                 <div>
                   <h4 className="text-lg text-white mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-gold" />
-                    현재의 에너지: 궁극적 양력 ({TAROT_DECK[result.solarCard].name})
+                    후반기 에너지: 궁극적 양력 ({TAROT_DECK[result.solarCard].name})
                   </h4>
                   <p className="leading-relaxed font-sans font-light">
                     두 번의 중간수 과정을 거치며 성숙해진 당신은, 마침내 후천적이고 궁극적인 삶의 방향인 <strong>{TAROT_DECK[result.solarCard].name}</strong>의 단계에 이르게 되었습니다. 이 양력 카드는 당신이 이 생에서 성취해야 할 숙제이자 완성된 자아를 의미합니다.
