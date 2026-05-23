@@ -95,6 +95,7 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
     } catch (err: any) {
       console.warn("API 분석에 실패하여 로컬 분석 결과를 제공합니다:", err);
       // 모바일 앱 환경 등 네트워크 제한 시 기본 로컬 분석 로직을 대신 보여줍니다.
+      setError(null);
       setReading(generateFallbackReading(mbtiString, result));
     } finally {
       setIsLoading(false);
