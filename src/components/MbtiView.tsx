@@ -45,18 +45,28 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
     ];
 
     try {
-      const res = await fetch('/api/mbti-reading', {
+      const apiUrl = `${window.location.origin}/api/mbti-reading`;
+      const res = await fetch(apiUrl, {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({ mbti: mbtiString, targetCards })
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to analyze');
+      
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        throw new Error(`분석 중 서버 오류가 발생했습니다. (응답: ${text.slice(0, 30)})`);
+      }
+
+      if (!res.ok) throw new Error(data.error || '분석에 실패했습니다.');
       setReading(data.reading);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "알 수 없는 오류가 발생했습니다.");
     } finally {
       setIsLoading(false);
     }
