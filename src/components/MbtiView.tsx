@@ -17,6 +17,25 @@ const MBTI_TRAITS = [
   [['J', '판단형 (Judging)'], ['P', '인식형 (Perceiving)']]
 ];
 
+function generateFallbackReading(mbti: string, result: TarotDrawResult): string {
+  const isE = mbti.includes('E');
+  const isN = mbti.includes('N');
+  const isF = mbti.includes('F');
+  const isJ = mbti.includes('J');
+
+  const solarCard = TAROT_DECK[result.solarCard];
+  const lunarCard = TAROT_DECK[result.lunarCard];
+
+  return `### ✨ ${mbti} 성향과 타로의 특별한 만남
+당신은 **${isE ? '외부 세계와 활발히 소통하며 에너지를 얻는' : '내면의 깊은 생각과 성찰을 통해 에너지를 모으는'}** 성향을 가지고 있습니다. 여기에 양력 카드인 **${solarCard.name}**의 에너지가 더해져, 당신의 타고난 능력이 더욱 밝게 빛나고 있습니다. **${isN ? '직관적이고 미래지향적인 아이디어' : '현실감각과 꼼꼼한 관찰력'}**를 바탕으로 새로운 기회를 포착하는 데 유리한 잠재력을 지녔습니다.
+
+### 💖 깊은 내면과 관계의 시너지
+음력 카드인 **${lunarCard.name}**는 당신의 내면 깊은 곳의 정서적 기반을 보여줍니다. **${isF ? '타인의 감정에 깊이 공감하고 따뜻한 유대를 중시하는' : '논리적이고 객관적인 판단을 통해 명확한 기준을 세우는'}** 당신의 특징이 이 카드와 결합되어, 주위 사람들에게 신뢰와 영감을 줍니다. 관계를 맺거나 중요한 결정을 내릴 때, 이러한 당신만의 흔들리지 않는 가치관과 통찰력이 큰 힘이 될 것입니다.
+
+### 🌟 잠재력과 나아갈 방향
+생일로부터 도출된 중간수 타로 카드들은 당신이 가진 **${isJ ? '체계적이고 계획적인 실행력' : '상황에 유연하게 대처하는 적응력'}**을 지지하고 응원하고 있습니다. 지금 당장 모든 것이 완벽하지 않더라도, 당신만의 페이스로 꾸준히 나아가다 보면 자연스럽게 긍정적인 결과를 성취하게 될 것입니다. 자신의 타고난 재능과 내면의 소리를 믿고 한 걸음씩 나아가 보세요. 앞으로 더 찬란하고 빛나는 미래가 당신을 기다리고 있습니다!`;
+}
+
 export function MbtiView({ result, onBack }: MbtiViewProps) {
   const [mbtiVals, setMbtiVals] = useState<string[]>(['', '', '', '']);
   const [reading, setReading] = useState<string | null>(null);
@@ -64,17 +83,19 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
       let data;
       try {
         if (!text) {
-          throw new Error('서버로부터 응답 데이터를 받지 못했습니다. (네트워크 지연 또는 서버 오류)');
+          throw new Error('서버로부터 응답 데이터를 받지 못했습니다.');
         }
         data = JSON.parse(text);
       } catch (parseError: any) {
-        throw new Error(parseError.message || `분석 실패. (응답: ${text.slice(0, 30)})`);
+        throw new Error('API_FETCH_FAILED');
       }
 
-      if (!res.ok) throw new Error(data.error || '분석에 실패했습니다.');
+      if (!res.ok) throw new Error('API_FETCH_FAILED');
       setReading(data.reading);
     } catch (err: any) {
-      setError(err.message || "알 수 없는 오류가 발생했습니다.");
+      console.warn("API 분석에 실패하여 로컬 분석 결과를 제공합니다:", err);
+      // 모바일 앱 환경 등 네트워크 제한 시 기본 로컬 분석 로직을 대신 보여줍니다.
+      setReading(generateFallbackReading(mbtiString, result));
     } finally {
       setIsLoading(false);
     }
