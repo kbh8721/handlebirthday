@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowLeft, Sparkles, Loader2 } from 'lucide-react';
+import { ArrowLeft, Sparkles, Loader2, Printer } from 'lucide-react';
 import Markdown from 'react-markdown';
 import { TarotDrawResult } from '../utils';
 import { TAROT_DECK } from '../tarotData';
@@ -45,7 +45,12 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
     ];
 
     try {
-      const apiUrl = `${window.location.origin}/api/mbti-reading`;
+      // 휴대폰 앱(로컬 웹뷰)에서 실행 중일 때는 원격 백엔드를 가리키도록 설정합니다.
+      const isMobileApp = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+      const apiUrl = isMobileApp 
+        ? 'https://ais-pre-55kycslwbfp6ks7eo3ktlf-681460553821.asia-east1.run.app/api/mbti-reading'
+        : '/api/mbti-reading';
+        
       const res = await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -58,9 +63,12 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
       const text = await res.text();
       let data;
       try {
+        if (!text) {
+          throw new Error('서버로부터 응답 데이터를 받지 못했습니다. (네트워크 지연 또는 서버 오류)');
+        }
         data = JSON.parse(text);
-      } catch (parseError) {
-        throw new Error(`분석 중 서버 오류가 발생했습니다. (응답: ${text.slice(0, 30)})`);
+      } catch (parseError: any) {
+        throw new Error(parseError.message || `분석 실패. (응답: ${text.slice(0, 30)})`);
       }
 
       if (!res.ok) throw new Error(data.error || '분석에 실패했습니다.');
@@ -175,15 +183,24 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
               <Markdown>{reading}</Markdown>
             </div>
             
-            <button
-              onClick={() => {
-                setReading(null);
-                setMbtiVals(['', '', '', '']);
-              }}
-              className="mt-6 w-full py-4 rounded-full border border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white transition-all relative z-10"
-            >
-              다시 분석하기
-            </button>
+            <div className="flex flex-col gap-3 mt-6">
+              <button
+                onClick={() => {
+                  setReading(null);
+                  setMbtiVals(['', '', '', '']);
+                }}
+                className="w-full py-4 rounded-full border border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-800 hover:text-white transition-all relative z-10"
+              >
+                다시 분석하기
+              </button>
+              <button
+                onClick={() => window.print()}
+                className="w-full py-4 rounded-full border border-slate-700 bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white transition-all relative z-10 flex items-center justify-center gap-2"
+              >
+                <Printer className="w-5 h-5" />
+                결과 프린트하기
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
