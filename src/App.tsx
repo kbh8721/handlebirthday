@@ -5,6 +5,7 @@ import { CalculationView } from './components/CalculationView';
 import { ResultView } from './components/ResultView';
 import { CardListView } from './components/CardListView';
 import { YearlyView } from './components/YearlyView';
+import { MbtiView } from './components/MbtiView';
 import { drawCards, TarotDrawResult } from './utils';
 
 /**
@@ -13,7 +14,7 @@ import { drawCards, TarotDrawResult } from './utils';
  */
 
 export default function App() {
-  const [step, setStep] = useState<'input' | 'calculating' | 'result' | 'list' | 'yearly'>('input');
+  const [step, setStep] = useState<'input' | 'calculating' | 'result' | 'list' | 'yearly' | 'mbti'>('input');
   const [result, setResult] = useState<TarotDrawResult | null>(null);
 
   const handleSubmit = (y: number, m: number, d: number, isLunar: boolean) => {
@@ -55,6 +56,7 @@ export default function App() {
                 setStep('input');
               }}
               onViewYearly={() => setStep('yearly')}
+              onViewMbti={() => setStep('mbti')}
             />
           )}
           {step === 'yearly' && result && (
@@ -62,6 +64,13 @@ export default function App() {
               key="yearly" 
               result={result} 
               onBack={() => setStep('result')} 
+            />
+          )}
+          {step === 'mbti' && result && (
+            <MbtiView
+              key="mbti"
+              result={result}
+              onBack={() => setStep('result')}
             />
           )}
           {step === 'list' && (

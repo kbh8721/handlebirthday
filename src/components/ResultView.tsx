@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
-import { Share2, RotateCcw, CalendarDays } from 'lucide-react';
+import { Share2, RotateCcw, CalendarDays, Brain } from 'lucide-react';
 import { TAROT_DECK } from '../tarotData';
 import { TarotDrawResult } from '../utils';
 
@@ -10,9 +10,10 @@ interface ResultViewProps {
   result: TarotDrawResult;
   onReset: () => void;
   onViewYearly: () => void;
+  onViewMbti: () => void;
 }
 
-export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
+export function ResultView({ result, onReset, onViewYearly, onViewMbti }: ResultViewProps) {
   const [revealed, setRevealed] = useState([false, false, false, false]);
 
   useEffect(() => {
@@ -187,9 +188,12 @@ export function ResultView({ result, onReset, onViewYearly }: ResultViewProps) {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12 pt-8 border-t border-slate-700/50">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-12 pt-8 border-t border-slate-700/50">
               <button onClick={onViewYearly} className="flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30 hover:border-gold py-3 px-6 rounded-xl transition-colors font-medium">
                 <CalendarDays className="w-4 h-4" /> 올해의 카드 보기
+              </button>
+              <button onClick={onViewMbti} className="flex items-center justify-center gap-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 hover:border-purple-500 py-3 px-6 rounded-xl transition-colors font-medium">
+                <Brain className="w-4 h-4" /> MBTI 시너지 분석
               </button>
               <button onClick={handleShare} className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white py-3 px-6 rounded-xl transition-colors font-medium">
                 <Share2 className="w-4 h-4" /> 결과 공유하기
