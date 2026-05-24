@@ -57,7 +57,13 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
     setIsLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/yearly-reading', {
+      // 휴대폰 앱(로컬 웹뷰)에서 실행 중일 때는 원격 백엔드를 가리키도록 설정합니다.
+      const isMobileApp = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+      const apiUrl = isMobileApp 
+        ? 'https://ais-pre-55kycslwbfp6ks7eo3ktlf-681460553821.asia-east1.run.app/api/yearly-reading'
+        : '/api/yearly-reading';
+
+      const res = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -83,11 +89,11 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
         throw new Error('API_FETCH_FAILED');
       }
 
-      if (!res.ok) throw new Error('API_FETCH_FAILED');
+      if (!res.ok) throw new Error(data.error || 'API_FETCH_FAILED');
       setReading(data.reading);
     } catch (err: any) {
       console.warn("API 분석에 실패하였습니다:", err);
-      setError("상세 분석을 불러오는 데 실패했습니다. 잠시 후 다시 시도해주세요.");
+      setError(`상세 분석을 불러오는 데 실패했습니다: ${err.message}`);
     } finally {
       setIsLoading(false);
     }
