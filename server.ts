@@ -20,7 +20,53 @@ async function startServer() {
     next();
   });
 
-  // API Route for Gemini MBTI + Tarot Reading
+  // API Route for Gemini Yearly Reading with MBTI & Blood Type
+  app.post("/api/yearly-reading", async (req, res) => {
+    try {
+      const { year, mbti, bloodType, solarCard, lunarCard } = req.body;
+      
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey) {
+        return res.status(500).json({ error: "Gemini API Key is not configured on the server." });
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      
+      const prompt = `사용자의 성향 정보 및 ${year}년도 타로 카드 결과는 다음과 같습니다:
+- MBTI: ${mbti}
+- 혈액형: ${bloodType}형
+- ${year}년의 음력 카드 (올해 전반기 및 기본 에너지): ${lunarCard}
+- ${year}년의 양력 카드 (올해 후반기 및 성취 과제): ${solarCard}
+
+위의 요소(연도별 타로 카드, MBTI 성향, 혈액형)를 모두 결합하여 사용자의 ${year}년 운세와 성향 변화, 그리고 조언에 대해 깊이 있고 입체적인 분석을 작성해주세요.
+분석은 과장되지 않으면서도 친근하고 따뜻한 어조로 작성해주며, 반드시 다음의 소제목 형식을 포함하여 가독성 좋고 짜임새 있게 구성해 주세요:
+
+### ✨ ${year}년, 당신을 감싸는 전체적인 기운
+(해당 연도의 타로 카드 에너지와 사용자의 MBTI, 혈액형 기질이 어떻게 상호작용하는지 분석)
+
+### 🌱 상반기의 흐름과 내면의 변화
+(음력 카드와 사용자의 성향을 바탕으로 한 상반기 예측 및 관계/일 조언)
+
+### 🌟 하반기의 성취와 나아갈 방향
+(양력 카드와 사용자의 성향을 바탕으로 한 하반기 예측 및 목표 달성을 위한 조언)
+
+마크다운 형식(볼드체 텍스트, 불릿 포인트 등)을 적극적으로 사용하여 모바일 화면에서도 한눈에 읽기 편하게 작성해 주세요.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+      });
+
+      if (!response.text) {
+         return res.status(500).json({ error: "Failed to generate reading from Gemini API." });
+      }
+
+      res.json({ reading: response.text });
+    } catch (error: any) {
+      console.error("Gemini API Error (Yearly):", error);
+      res.status(500).json({ error: error.message || "An error occurred during generating yearly reading." });
+    }
+  });
   app.post("/api/mbti-reading", async (req, res) => {
     try {
       const { mbti, bloodType, targetCards } = req.body;
