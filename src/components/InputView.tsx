@@ -83,7 +83,7 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
         <h1 className="font-serif text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-light via-gold to-yellow-600 mb-4 tracking-wider relative z-10">
           핸들생일타로
         </h1>
-        <p className="text-slate-300 font-light tracking-wide text-sm md:text-base relative z-10">
+        <p className="text-stone-600 font-light tracking-wide text-sm md:text-base relative z-10">
           방황하는 당신께 인생 핸들을
         </p>
       </div>
@@ -95,12 +95,12 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
            alt="Ship's Wheel"
            animate={{ rotate: [0, -360] }}
            transition={{ duration: 20, ease: "linear", repeat: Infinity }}
-           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(212,175,55,0.2)] mix-blend-screen relative z-10"
+           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(217,119,6,0.3)] relative z-10 opacity-90"
            referrerPolicy="no-referrer"
         />
         
         {/* The Sphinx icon fixed at 12 o'clock */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 w-24 h-24 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(212,175,55,0.6)] bg-black">
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-20 w-24 h-24 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(217,119,6,0.5)] bg-amber-50">
            <img 
              src={sphinxImg} 
              alt="Sphinx"
@@ -109,16 +109,16 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
            />
         </div>
 
-        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-12 h-12 animate-pulse drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] z-20 mix-blend-screen" />
+        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-12 h-12 animate-pulse drop-shadow-[0_0_10px_rgba(217,119,6,0.8)] z-20" />
       </div>
 
       <form onSubmit={handleSubmit} className="w-full space-y-6 relative z-10">
-        <div className="flex bg-midnight-light p-1 rounded-xl shadow-[0_0_10px_rgba(212,175,55,0.3)] mx-auto w-48 border border-gold">
+        <div className="flex bg-amber-100 p-1 rounded-xl shadow-xl border-amber-300 mx-auto w-48 border border-gold">
           <button
             type="button"
             className={cn(
               "flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-all",
-              !isLunar ? "bg-slate-800 text-gold shadow-md" : "text-slate-400 hover:text-slate-200"
+              !isLunar ? "bg-white text-gold shadow-md" : "text-stone-500 hover:text-stone-700"
             )}
             onClick={() => setIsLunar(false)}
           >
@@ -128,7 +128,7 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
             type="button"
             className={cn(
                "flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-lg text-sm font-medium transition-all",
-               isLunar ? "bg-slate-800 text-gold shadow-md" : "text-slate-400 hover:text-slate-200"
+               isLunar ? "bg-white text-gold shadow-md" : "text-stone-500 hover:text-stone-700"
              )}
             onClick={() => setIsLunar(true)}
           >
@@ -143,7 +143,7 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
             pattern="\d*"
             maxLength={8}
             placeholder="생년월일 8자리 (예: 19950524)"
-            className="w-full bg-midnight-light/50 border border-gold focus:border-gold-light focus:shadow-[0_0_10px_rgba(212,175,55,0.4)] outline-none rounded-xl py-4 px-6 text-center text-lg tracking-widest text-slate-100 placeholder:text-slate-600 transition-all shadow-inner"
+            className="w-full bg-amber-100/50 border border-gold focus:border-gold-light focus:shadow-[0_0_10px_rgba(217, 119, 6,0.4)] outline-none rounded-xl py-4 px-6 text-center text-lg tracking-widest text-stone-800 placeholder:text-stone-400 transition-all shadow-inner"
             value={dateStr}
             onChange={(e) => setDateStr(e.target.value.replace(/\D/g, ''))}
           />
@@ -153,14 +153,14 @@ export function InputView({ onSubmit, onViewList }: InputViewProps) {
           type="submit"
           className="group relative w-full flex items-center justify-center gap-3 bg-gradient-to-r from-cosmic to-cosmic-light hover:from-cosmic-light hover:to-cosmic text-white font-medium py-4 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(109,40,217,0.3)] hover:shadow-[0_0_30px_rgba(109,40,217,0.5)] overflow-hidden"
         >
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-30 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30 mix-blend-overlay"></div>
           <Sparkles className="w-5 h-5 group-hover:animate-sparkle" />
           <span>나의 운명 확인하기</span>
           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
         </button>
       </form>
       
-      <button onClick={onViewList} className="mt-8 text-sm text-slate-500 hover:text-gold transition-colors underline underline-offset-4">
+      <button onClick={onViewList} className="mt-8 text-sm text-stone-500 hover:text-gold transition-colors underline underline-offset-4">
         타로 카드 도감 보기
       </button>
 

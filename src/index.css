@@ -3,13 +3,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-midnight: #0F172A;
-  --color-midnight-light: #1E293B;
-  --color-gold: #D4AF37;
-  --color-gold-light: #FDE047;
-  --color-cosmic: #6D28D9;
-  --color-cosmic-light: #8B5CF6;
-  --color-cosmic-glow: rgba(109, 40, 217, 0.5);
+  --color-midnight: #FFFBEB; /* Amber 50 base instead of dark */
+  --color-midnight-light: #FEF3C7; /* Amber 100 */
+  --color-gold: #D97706; /* Amber 600 - deep vibrant gold/orange */
+  --color-gold-light: #FDE047; /* Yellow 300 - sunflower yellow */
+  --color-cosmic: #166534; /* Green 800 - sunflower stem/leaves */
+  --color-cosmic-light: #22C55E; /* Green 500 */
+  --color-cosmic-glow: rgba(253, 224, 71, 0.4);
 
   --font-serif: "Nanum Myeongjo", serif;
   --font-sans: "Pretendard", "Noto Sans KR", sans-serif;
@@ -23,8 +23,8 @@
 }
 
 body {
-  @apply bg-midnight text-slate-100 font-sans antialiased overflow-x-hidden;
-  background-image: radial-gradient(circle at 50% 0%, #1E293B 0%, #0F172A 70%);
+  @apply bg-amber-50 text-stone-800 font-sans antialiased overflow-x-hidden;
+  background-image: radial-gradient(circle at 50% 0%, #FEF3C7 0%, #FFFBEB 70%);
   background-attachment: fixed;
 }
 

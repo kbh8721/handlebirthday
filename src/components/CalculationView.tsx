@@ -48,12 +48,12 @@ export function CalculationView({ onComplete }: CalculationViewProps) {
            alt="Ship's Wheel"
            animate={{ rotate: [0, -360] }}
            transition={{ duration: 10, ease: "linear", repeat: Infinity }}
-           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(212,175,55,0.2)] mix-blend-screen"
+           className="w-full h-full object-cover rounded-full shadow-[0_0_30px_rgba(217,119,6,0.3)] opacity-90"
            referrerPolicy="no-referrer"
         />
         
         {/* The Sphinx icon fixed at 12 o'clock */}
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10 w-20 h-20 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(212,175,55,0.6)] bg-black">
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 z-10 w-20 h-20 rounded-full overflow-hidden border-2 border-gold shadow-[0_0_20px_rgba(217,119,6,0.5)] bg-amber-50">
            <img 
              src={sphinxImg} 
              alt="Sphinx"
@@ -62,7 +62,7 @@ export function CalculationView({ onComplete }: CalculationViewProps) {
            />
         </div>
 
-        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-10 h-10 animate-pulse drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] z-10 mix-blend-screen" />
+        <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-gold w-10 h-10 animate-pulse drop-shadow-[0_0_10px_rgba(217,119,6,0.8)] z-10" />
       </div>
 
       <motion.p 

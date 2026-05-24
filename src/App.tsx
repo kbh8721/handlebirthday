@@ -30,7 +30,7 @@ export default function App() {
   return (
     <div className="min-h-screen w-full overflow-x-hidden selection:bg-cosmic/30">
       {/* Ambient background particles */}
-      <div className="fixed inset-0 pointer-events-none opacity-20 z-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
+      <div className="fixed inset-0 pointer-events-none opacity-40 z-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
       
       <main className="container mx-auto px-4 py-8 relative z-10 flex flex-col items-center justify-center min-h-screen">
         <AnimatePresence mode="wait">
@@ -82,7 +82,7 @@ export default function App() {
         </AnimatePresence>
       </main>
       
-      <footer className="py-6 text-center text-slate-600 text-xs font-serif fixed bottom-0 w-full z-[1] pointer-events-none">
+      <footer className="py-6 text-center text-stone-500 text-xs font-serif fixed bottom-0 w-full z-[1] pointer-events-none">
         &copy; Handle Birthday Tarot. Cosmos guides you.
       </footer>
     </div>

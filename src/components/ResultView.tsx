@@ -63,16 +63,16 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
 
   const renderCard = (c: { label: string, id: number, index: number }) => (
     <div key={c.index} className="flex flex-col items-center flex-1 w-full max-w-[240px]">
-      <span className="text-sm text-slate-400 mb-4 tracking-widest">{c.label}</span>
+      <span className="text-sm text-stone-500 mb-4 tracking-widest">{c.label}</span>
       <div className="relative w-full aspect-[2/3] perspective-1000">
          <motion.div
             className="w-full h-full relative preserve-3d"
             animate={{ rotateY: revealed[c.index] ? 180 : 0 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 60 }}
          >
-           {/* 앞면 (뒤집히기 전) */}
-           <div className="absolute inset-0 backface-hidden bg-gradient-to-br from-midnight-light to-midnight border-2 border-slate-700 rounded-2xl flex items-center justify-center shadow-lg">
-              <div className="w-4/5 h-4/5 border border-slate-600 rounded-xl flex items-center justify-center opacity-30">
+            {/* 앞면 (뒤집히기 전) */}
+           <div className="absolute inset-0 backface-hidden bg-gradient-to-br from-amber-200 to-amber-100 border-2 border-amber-300 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-4/5 h-4/5 border border-amber-300 rounded-xl flex items-center justify-center opacity-30">
                  <div className="w-16 h-16 rounded-full border border-gold/50 flex items-center justify-center">
                     <div className="w-12 h-12 rounded-full border border-gold/30" />
                  </div>
@@ -80,9 +80,9 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
            </div>
 
            {/* 뒷면 (타로카드 내용) */}
-           <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-slate-900 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.15)] flex flex-col items-center justify-center">
+           <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-amber-50 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(217, 119, 6,0.15)] flex flex-col items-center justify-center">
               <img src={TAROT_DECK[c.id].imageUrl} alt={TAROT_DECK[c.id].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
-              <div className="absolute bottom-0 w-full h-[15%] bg-slate-900 flex items-center justify-center border-t border-gold/30">
+              <div className="absolute bottom-0 w-full h-[15%] bg-amber-50 flex items-center justify-center border-t border-gold/30">
                 <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[c.id].name}</span>
               </div>
            </div>
@@ -115,14 +115,14 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="w-full max-w-2xl bg-midnight-light/50 border border-slate-700/50 rounded-2xl p-8 backdrop-blur-sm"
+            className="w-full max-w-2xl bg-amber-100/50 border border-amber-300/50 rounded-2xl p-8 backdrop-blur-sm"
           >
-            <div className="prose prose-invert max-w-none font-serif text-slate-200">
-              <h3 className="text-gold text-2xl border-b border-slate-700 pb-4 mb-6">운명의 해석</h3>
+            <div className="prose prose-invert max-w-none font-serif text-stone-700">
+              <h3 className="text-gold text-2xl border-b border-amber-300 pb-4 mb-6">운명의 해석</h3>
               
               <div className="space-y-8">
                 <div>
-                  <h4 className="text-lg text-white mb-2 flex items-center gap-2">
+                  <h4 className="text-lg text-stone-800 mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cosmic-light" />
                     내면의 흐름: 선천적 음력 ({TAROT_DECK[result.lunarCard].name})
                   </h4>
@@ -139,15 +139,15 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                   <span className="text-xs tracking-widest text-gold mt-2">흐름의 전환</span>
                 </div>
                 
-                <div className="bg-slate-900/40 p-6 rounded-xl border border-slate-700/50">
+                <div className="bg-amber-50/40 p-6 rounded-xl border border-amber-300/50">
                   <h4 className="text-lg text-gold mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     성장의 징검다리: 첫번째 중간수 ({TAROT_DECK[result.middleCard1].name})
                   </h4>
-                  <p className="font-sans font-light leading-relaxed mb-4 text-slate-300">
+                  <p className="font-sans font-light leading-relaxed mb-4 text-stone-600">
                     음력의 선천적 기질에서 벗어나 더 넓은 세상의 흐름으로 나아가는 첫 번째 관문입니다. 이 성장 과정에서는 <strong>{TAROT_DECK[result.middleCard1].name}</strong>의 에너지가 당신을 이끕니다.
                   </p>
-                  <p className="text-slate-200 italic text-sm text-center bg-black/30 p-4 rounded-lg shadow-inner">
+                  <p className="text-stone-700 italic text-sm text-center bg-white/50 p-4 rounded-lg shadow-inner">
                     "{TAROT_DECK[result.middleCard1].advice}"
                   </p>
                 </div>
@@ -156,15 +156,15 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                   <div className="w-[1px] h-8 bg-gradient-to-b from-transparent via-gold/30 to-transparent" />
                 </div>
 
-                <div className="bg-slate-900/40 p-6 rounded-xl border border-slate-700/50">
+                <div className="bg-amber-50/40 p-6 rounded-xl border border-amber-300/50">
                   <h4 className="text-lg text-gold mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
                     성숙의 징검다리: 두번째 중간수 ({TAROT_DECK[result.middleCard2].name})
                   </h4>
-                  <p className="font-sans font-light leading-relaxed mb-4 text-slate-300">
+                  <p className="font-sans font-light leading-relaxed mb-4 text-stone-600">
                     첫 번째 징검다리를 거쳐 사회적 자아를 확립해가는 두 번째 과정입니다. <strong>{TAROT_DECK[result.middleCard2].name}</strong>의 지혜와 경험을 통해 당신은 최종 목적지에 다가서게 됩니다. 
                   </p>
-                  <p className="text-slate-200 italic text-sm text-center bg-black/30 p-4 rounded-lg shadow-inner">
+                  <p className="text-stone-700 italic text-sm text-center bg-white/50 p-4 rounded-lg shadow-inner">
                     "{TAROT_DECK[result.middleCard2].advice}"
                   </p>
                 </div>
@@ -175,7 +175,7 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                 </div>
 
                 <div>
-                  <h4 className="text-lg text-white mb-2 flex items-center gap-2">
+                  <h4 className="text-lg text-stone-800 mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-gold" />
                     후반기 에너지: 궁극적 양력 ({TAROT_DECK[result.solarCard].name})
                   </h4>
@@ -188,17 +188,17 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-12 pt-8 border-t border-slate-700/50">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center mt-12 pt-8 border-t border-amber-300/50">
               <button onClick={onViewYearly} className="flex items-center justify-center gap-2 bg-gold/10 hover:bg-gold/20 text-gold border border-gold/30 hover:border-gold py-3 px-6 rounded-xl transition-colors font-medium">
                 <CalendarDays className="w-4 h-4" /> 올해의 카드 보기
               </button>
               <button onClick={onViewMbti} className="flex items-center justify-center gap-2 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/30 hover:border-purple-500 py-3 px-6 rounded-xl transition-colors font-medium">
                 <Brain className="w-4 h-4" /> MBTI 시너지 분석
               </button>
-              <button onClick={handleShare} className="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white py-3 px-6 rounded-xl transition-colors font-medium">
+              <button onClick={handleShare} className="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-white py-3 px-6 rounded-xl transition-colors font-medium shadow-md">
                 <Share2 className="w-4 h-4" /> 결과 공유하기
               </button>
-              <button onClick={onReset} className="flex items-center justify-center gap-2 bg-transparent border border-slate-600 hover:border-gold hover:text-gold text-slate-300 py-3 px-6 rounded-xl transition-colors font-medium">
+              <button onClick={onReset} className="flex items-center justify-center gap-2 bg-transparent border border-amber-300 hover:border-gold hover:text-gold text-stone-600 py-3 px-6 rounded-xl transition-colors font-medium">
                 <RotateCcw className="w-4 h-4" /> 다시 뽑기
               </button>
             </div>
