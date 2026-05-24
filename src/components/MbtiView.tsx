@@ -19,8 +19,8 @@ const MBTI_TRAITS = [
 
 function generateFallbackReading(mbti: string, result: TarotDrawResult): string {
   const isE = mbti.includes('E');
-  const isN = mbti.includes('N');
-  const isF = mbti.includes('F');
+  const isS = mbti.includes('S');
+  const isT = mbti.includes('T');
   const isJ = mbti.includes('J');
 
   const solarCard = TAROT_DECK[result.solarCard];
@@ -28,17 +28,32 @@ function generateFallbackReading(mbti: string, result: TarotDrawResult): string 
   const middleCard1 = TAROT_DECK[result.middleCard1];
   const middleCard2 = TAROT_DECK[result.middleCard2];
 
+  const eiText = isE ? '외부의 활발한 교류를 통해 에너지를 얻고 확산하는' : '내면의 깊은 탐구를 통해 단단한 에너지를 응축하는';
+  const snText = isS ? '현실적인 감각이 뛰어나며 현재를 바탕으로 견고함을 쌓아가는' : '직관력이 뛰어나고 미래지향적인 비전으로 넓은 통찰력을 제시하는';
+  const tfText = isT ? '상황을 객관적으로 분석하여 합리적이고 논리적인 해결책을 찾는' : '타인의 감정에 깊이 공감하고 따뜻한 유대감과 조화를 중시하는';
+  const jpText = isJ ? '체계적인 계획을 세우고 목표를 향해 흔들림 없이 추진하는' : '변화하는 상황에 유연하게 대처하며 자유로운 흐름 속에서 기회를 잡는';
+
   return `### ✨ 타고난 본성과 숨겨진 강점
-당신은 **${isE ? '외부와 활발히 소통하며 확산하는' : '내면의 깊이를 탐구하며 응축하는'}** 성향(\`${mbti}\`)과 양력 카드 **[${solarCard.name}]**의 에너지를 함께 타고났습니다. 
-이러한 본질적인 힘이 당신의 **${isN ? '미래지향적이고 직관적인 시야' : '현실적이고 날카로운 관찰력'}**와 결합하여, 남들이 쉽게 보지 못하는 기회를 포착하는 능력으로 발현되고 있네요. 자신만의 재능을 더욱 신뢰해 보세요.
+당신은 **${eiText}** 성향(${isE ? 'E' : 'I'})과 **${snText}** 성향(${isS ? 'S' : 'N'})을 지녔습니다. 
+당신의 타고난 성향을 이끌어주는 양력 카드 **[${solarCard.name}]**(${solarCard.keyword})는 이러한 당신의 본질에 더 큰 빛을 비추고 있습니다. 
+> *"${solarCard.description}"*
+
+이 강렬한 빛은 당신의 타고난 기질과 완벽하게 결합되어, 다른 사람들이 미처 보지 못하는 당신만의 독특한 매력과 잠재력으로 발현됩니다. 스스로의 강점을 깊이 믿고 나아가도 좋습니다.
 
 ### 🤝 관계와 소통의 지혜
-음력 카드 **[${lunarCard.name}]**는 당신의 정서적 기반을 상징합니다. **${isF ? '타인에게 깊이 공감하고 조화를 중시하는' : '객관적인 논리로 명확한 기준을 세우려는'}** 당신의 태도는 주변 사람들에게 단단한 안정감과 신뢰를 줍니다. 
-특히 중요한 결정을 내리거나 타인과 교류할 때, 중간수 **[${middleCard1.name}]**의 메시지를 떠올려 보세요. 당신만의 고유한 밸런스가 관계 속에서 큰 시너지를 만들어낼 것입니다.
+사람들과 교류할 때 당신은 주로 **${tfText}** 특성(${isT ? 'T' : 'F'})을 발휘합니다. 
+여기에 내면의 감정과 무의식을 상징하는 음력 카드 **[${lunarCard.name}]**(${lunarCard.keyword})의 기운이 어우러져, 관계를 맺는 당신의 모습에 깊이를 더해줍니다. 
+> *"${lunarCard.description}"*
+
+특히 갈등이나 선택의 기로에 섰을 때, 당신의 첫 번째 중간수 **[${middleCard1.name}]**가 주는 메시지를 떠올려 보세요. **"${middleCard1.advice}"** 당신만의 방식에 타로의 혜안이 더해지면, 주변 사람들과 더 깊고 단단한 인연의 시너지를 낼 수 있을 것입니다.
 
 ### 🌟 잠재력 만개를 위한 특별한 메시지
-당신의 여정을 이끌어주는 또 다른 중간수 **[${middleCard2.name}]**는 당신이 가진 **${isJ ? '목표를 향해 체계적으로 나아가는 추진력' : '상황에 유연하게 대처하며 흐름을 타는 적응력'}**을 지지하고 응원합니다. 
-지금 당장 완벽한 결과가 눈에 보이지 않더라도 조급해하지 마세요. 당신만의 멋진 리듬을 유지하며 한 걸음 나아갈 때, 숨겨진 잠재력은 반드시 빛을 발하게 될 것입니다. 당신의 찬란한 앞날을 진심으로 응원합니다!`;
+미래를 향해 걸어가는 당신의 발걸음은 **${jpText}** 에너지(${isJ ? 'J' : 'P'})로 채워져 있습니다. 
+당신이 가진 잠재력을 최고로 끌어올릴 수 있는 핵심 열쇠는 두 번째 중간수 **[${middleCard2.name}]**(${middleCard2.keyword})에 있습니다. 
+> *"${middleCard2.description}"*
+
+마침내 당신이 원하는 목표에 닿기 위해, 이 카드의 조언을 꼭 기억하세요. **"${middleCard2.advice}"**
+당신이 지닌 고유한 [**${mbti}**]의 능력과 네 장의 타로 카드가 전하는 지혜를 나침반 삼아 흔들림 없이 전진한다면, 머지않아 당신만의 눈부신 성취를 거머쥐게 될 것입니다. 당신의 눈부신 여정을 진심으로 응원합니다!`;
 }
 
 export function MbtiView({ result, onBack }: MbtiViewProps) {
