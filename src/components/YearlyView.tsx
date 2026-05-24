@@ -17,6 +17,36 @@ const BLOOD_TYPES = [
   [['O', 'O형'], ['AB', 'AB형']]
 ];
 
+function generateFallbackYearlyReading(year: number, mbti: string, bloodType: string, solarCard: any, lunarCard: any): string {
+  const isE = mbti.includes('E');
+  const isS = mbti.includes('S');
+  const isT = mbti.includes('T');
+  const isJ = mbti.includes('J');
+
+  const bloodTexts: Record<string, string> = {
+    'A': '세심하고 책임감이 강하며 완벽을 추구하는',
+    'B': '자유롭고 호기심이 많으며 독창적인 에너지를 뿜어내는',
+    'O': '열정적이고 사교적이며 행동력이 뛰어난',
+    'AB': '이성적이고 합리적이며 세련된 균형감각을 갖춘'
+  };
+  const bText = bloodTexts[bloodType] || '독특한';
+
+  return `### ✨ ${year}년, 당신을 감싸는 전체적인 기운
+**${bText}** 혈액형(${bloodType}형) 기질과 당신의 고유한 **${mbti}** 성향이 만나, 올해는 매우 특별한 해가 될 것입니다. 두 타로 카드가 전하는 에너지는 당신의 본질을 밝히고 나아갈 길을 안내하고 있습니다.
+
+### 🌱 상반기의 흐름과 내면의 변화
+상반기에는 **[${lunarCard.name}]**(${lunarCard.keyword}) 카드의 기운이 강합니다.
+> *"${lunarCard.description}"*
+
+이 시기에는 **${isS ? '현실적인 감각을 활용하여' : '미래지향적인 직관을 바탕으로'}** 새로운 기회를 모색하는 흐름이 예상됩니다. 갈등이나 고민의 순간에는 **${isT ? '상황을 객관적으로 분석하는 힘' : '타인과 진심으로 교감하는 따뜻함'}**을 발휘해 상황을 풀어가 보세요.
+
+### 🌟 하반기의 성취와 나아갈 방향
+하반기에는 **[${solarCard.name}]**(${solarCard.keyword}) 카드의 에너지가 당신을 이끕니다.
+> *"${solarCard.description}"*
+
+마침내 목표에 도달하기 위해, **"${solarCard.advice}"**라는 조언을 꼭 기억하세요. 당신이 가진 **${isJ ? '목표를 향한 체계적인 추진력' : '변화에 능동적인 유연한 적응력'}**을 무기로 삼는다면 머지않아 큰 성취를 이룰 수 있을 것입니다!`;
+}
+
 interface YearlyViewProps {
   result: TarotDrawResult;
   onBack: () => void;
@@ -89,11 +119,12 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
         throw new Error('API_FETCH_FAILED');
       }
 
-      if (!res.ok) throw new Error(data.error || 'API_FETCH_FAILED');
+      if (!res.ok) throw new Error(data?.error || 'API_FETCH_FAILED');
       setReading(data.reading);
     } catch (err: any) {
-      console.warn("API 분석에 실패하였습니다:", err);
-      setError(`상세 분석을 불러오는 데 실패했습니다: ${err.message}`);
+      console.warn("API 분석에 실패하여 로컬 분석 결과를 제공합니다:", err);
+      setError(null);
+      setReading(generateFallbackYearlyReading(selectedYear, mbtiString, bloodType, TAROT_DECK[solarCardId], TAROT_DECK[lunarCardId]));
     } finally {
       setIsLoading(false);
     }
