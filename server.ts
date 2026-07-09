@@ -55,7 +55,7 @@ async function startServer() {
 마크다운 형식(볼드체 텍스트, 불릿 포인트 등)을 적극적으로 사용하여 모바일 화면에서도 한눈에 읽기 편하게 작성해 주세요.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3.5-flash",
         contents: prompt,
       });
 
@@ -102,7 +102,7 @@ async function startServer() {
 마크다운 형식(볼드체 텍스트, 불릿 포인트 등)을 적극적으로 사용하여 모바일 화면에서도 한눈에 읽기 편하게 작성해 주세요.`;
 
       const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
+        model: "gemini-3.5-flash",
         contents: prompt
       });
 
