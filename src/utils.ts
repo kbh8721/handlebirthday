@@ -33,6 +33,7 @@ export interface TarotDrawResult {
   lunarCard: number;
   middleCard1: number;
   middleCard2: number;
+  destinyCard: number;
   solarDate: { y: number; m: number; d: number };
   lunarDate: { y: number; m: number; d: number };
 }
@@ -71,12 +72,23 @@ export function drawCards(inputY: number, inputM: number, inputD: number, isLuna
   if (middleCard2 === 22) {
     middleCard2 = 0;
   }
+
+  // 총운(Destiny Card): 음력카드 + 양력카드 (수비학적 환산)
+  let destinyCard = solarCard + lunarCard;
+  if (destinyCard === 22) {
+    destinyCard = 0;
+  } else {
+    while (destinyCard > 21) {
+      destinyCard = destinyCard.toString().split('').reduce((a, b) => a + Number(b), 0);
+    }
+  }
   
   return {
     solarCard,
     lunarCard,
     middleCard1,
     middleCard2,
+    destinyCard,
     solarDate,
     lunarDate
   };

@@ -14,16 +14,17 @@ interface ResultViewProps {
 }
 
 export function ResultView({ result, onReset, onViewYearly, onViewMbti }: ResultViewProps) {
-  const [revealed, setRevealed] = useState([false, false, false, false]);
+  const [revealed, setRevealed] = useState([false, false, false, false, false]);
 
   useEffect(() => {
-    // 순차적으로 4장의 카드 뒤집기
+    // 순차적으로 5장의 카드 뒤집기
     const timers = [
-      setTimeout(() => setRevealed(r => [true, r[1], r[2], r[3]]), 800),
-      setTimeout(() => setRevealed(r => [r[0], true, r[2], r[3]]), 1600),
-      setTimeout(() => setRevealed(r => [r[0], r[1], true, r[3]]), 2400),
+      setTimeout(() => setRevealed(r => [true, r[1], r[2], r[3], r[4]]), 800),
+      setTimeout(() => setRevealed(r => [r[0], true, r[2], r[3], r[4]]), 1600),
+      setTimeout(() => setRevealed(r => [r[0], r[1], true, r[3], r[4]]), 2400),
+      setTimeout(() => setRevealed(r => [r[0], r[1], r[2], true, r[4]]), 3200),
       setTimeout(() => {
-        setRevealed(r => [r[0], r[1], r[2], true]);
+        setRevealed(r => [r[0], r[1], r[2], r[3], true]);
         // 마지막 카드 뒤집힐 때 효과
         confetti({
           particleCount: 120,
@@ -31,13 +32,13 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
           origin: { y: 0.6 },
           colors: ['#D4AF37', '#6D28D9', '#ffffff']
         });
-      }, 3200)
+      }, 4000)
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
 
   const handleShare = async () => {
-    const text = `내 인생을 안내하는 핸들생일타로\n\n음력카드: ${TAROT_DECK[result.lunarCard].id}. ${TAROT_DECK[result.lunarCard].name}\n양력카드: ${TAROT_DECK[result.solarCard].id}. ${TAROT_DECK[result.solarCard].name}\n중간수1: ${TAROT_DECK[result.middleCard1].id}. ${TAROT_DECK[result.middleCard1].name}\n중간수2: ${TAROT_DECK[result.middleCard2].id}. ${TAROT_DECK[result.middleCard2].name}\n\n나의 운명 확인하기: ${window.location.origin}`;
+    const text = `내 인생을 안내하는 핸들생일타로\n\n총운: ${TAROT_DECK[result.destinyCard].id}. ${TAROT_DECK[result.destinyCard].name}\n음력카드: ${TAROT_DECK[result.lunarCard].id}. ${TAROT_DECK[result.lunarCard].name}\n양력카드: ${TAROT_DECK[result.solarCard].id}. ${TAROT_DECK[result.solarCard].name}\n중간수1: ${TAROT_DECK[result.middleCard1].id}. ${TAROT_DECK[result.middleCard1].name}\n중간수2: ${TAROT_DECK[result.middleCard2].id}. ${TAROT_DECK[result.middleCard2].name}\n\n나의 운명 확인하기: ${window.location.origin}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: '핸들생일타로 결과', text });
@@ -49,6 +50,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
     }
   };
 
+  const destinyCards = [
+    { label: "나의 총운 (평생의 테마)", id: result.destinyCard, index: 4 }
+  ];
+
   const topCards = [
     { label: "음력 탄생카드", id: result.lunarCard, index: 0 },
     { label: "양력 탄생카드", id: result.solarCard, index: 1 },
@@ -59,7 +64,7 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
     { label: "두번째 중간수", id: result.middleCard2, index: 3 },
   ];
 
-  const allRevealed = revealed[3];
+  const allRevealed = revealed[4];
 
   const renderCard = (c: { label: string, id: number, index: number }) => (
     <div key={c.index} className="flex flex-col items-center flex-1 w-full max-w-[240px]">
@@ -100,6 +105,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
       <h2 className="font-serif text-3xl font-bold text-gold mb-12 text-center">당신의 운명의 수레바퀴</h2>
 
       <div className="flex flex-col gap-10 w-full mb-16 items-center">
+        {/* 총운 1장 */}
+        <div className="flex flex-row gap-4 md:gap-6 w-full justify-center items-center">
+          {destinyCards.map(renderCard)}
+        </div>
         {/* 상단 2장 (음력, 양력) */}
         <div className="flex flex-row gap-4 md:gap-6 w-full justify-center items-center">
           {topCards.map(renderCard)}
@@ -121,6 +130,19 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
               <h3 className="text-gold text-2xl border-b border-amber-300 pb-4 mb-6">운명의 해석</h3>
               
               <div className="space-y-8">
+                <div className="bg-gradient-to-r from-amber-100/50 to-transparent p-6 rounded-xl border-l-4 border-gold mb-8">
+                  <h4 className="text-xl text-stone-900 mb-3 flex items-center gap-2 font-bold">
+                    <span className="w-2.5 h-2.5 rounded-full bg-gold" />
+                    평생의 테마: 나의 총운 ({TAROT_DECK[result.destinyCard].id}. {TAROT_DECK[result.destinyCard].name})
+                  </h4>
+                  <p className="leading-relaxed font-sans font-medium text-stone-700">
+                    음력과 양력의 에너지가 결합되어 만들어낸 당신의 평생 테마는 바로 <strong>{TAROT_DECK[result.destinyCard].id}. {TAROT_DECK[result.destinyCard].name}</strong>입니다. 
+                    이 카드는 당신의 삶 전체를 관통하는 핵심 운명이자, 가장 강력한 잠재력을 상징합니다.
+                    <br/><br/>
+                    {TAROT_DECK[result.destinyCard].description}
+                  </p>
+                </div>
+
                 <div>
                   <h4 className="text-lg text-stone-800 mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cosmic-light" />
