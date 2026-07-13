@@ -1,31 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Lock, Unlock, Eye, EyeOff, AlertCircle, Settings, Sparkles } from 'lucide-react';
+import { Lock, Unlock, Eye, EyeOff, AlertCircle, Sparkles } from 'lucide-react';
 import { TAROT_DECK } from '../tarotData';
 
 interface LoginViewProps {
   onLoginSuccess: () => void;
-  onGoToSettings: () => void;
 }
 
-export function LoginView({ onLoginSuccess, onGoToSettings }: LoginViewProps) {
+export function LoginView({ onLoginSuccess }: LoginViewProps) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isUnlocked, setIsUnlocked] = useState(false);
 
-  // Initialize password to '1234' if not set
-  useEffect(() => {
-    if (!localStorage.getItem('birthday_tarot_password')) {
-      localStorage.setItem('birthday_tarot_password', '1234');
-    }
-  }, []);
-
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    const storedPassword = localStorage.getItem('birthday_tarot_password') || '1234';
     
-    if (password === storedPassword) {
+    if (password === '8721') {
       setIsUnlocked(true);
       setError('');
       setTimeout(() => {
@@ -120,18 +111,9 @@ export function LoginView({ onLoginSuccess, onGoToSettings }: LoginViewProps) {
         </button>
       </form>
 
-      {/* Settings / Configuration button */}
+      {/* Decorative Quote */}
       <div className="mt-10 flex flex-col items-center gap-4">
-        <button
-          onClick={onGoToSettings}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-amber-50/50 hover:bg-amber-100/80 border border-amber-300 text-stone-600 hover:text-stone-800 transition-all text-xs"
-        >
-          <Settings className="w-4 h-4 text-gold animate-spin-slow" />
-          <span>로그인 암호 설정</span>
-        </button>
-        
-        {/* Decorative Quote */}
-        <div className="text-center mt-6 text-stone-400 font-serif italic text-xs max-w-xs border-t border-amber-200/50 pt-4">
+        <div className="text-center text-stone-400 font-serif italic text-xs max-w-xs border-t border-amber-200/50 pt-4">
           "오늘의 타로 기운: {cardOfTheDay.name} ({cardOfTheDay.keyword})"
         </div>
       </div>
