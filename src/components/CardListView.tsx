@@ -29,7 +29,7 @@ export function CardListView({ onBack, key }: { key?: string; onBack: () => void
               <div className="relative w-24 shrink-0 rounded-lg overflow-hidden border border-gold/30">
                 <img src={card.imageUrl} alt={card.name} referrerPolicy="no-referrer" className="w-full h-auto object-cover transform scale-110" />
                 <div className="absolute bottom-0 w-full h-[15%] min-h-[16px] bg-amber-50 flex items-center justify-center border-t border-gold/30">
-                  <span className="text-gold font-serif font-semibold tracking-tighter text-[9px] text-center px-1 whitespace-nowrap overflow-hidden text-ellipsis">{card.name}</span>
+                  <span className="text-gold font-serif font-semibold tracking-tighter text-[9px] text-center px-1 whitespace-nowrap overflow-hidden text-ellipsis">{card.id}. {card.name}</span>
                 </div>
               </div>
               <div className="flex flex-col justify-end">

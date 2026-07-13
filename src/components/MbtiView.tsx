@@ -48,21 +48,21 @@ function generateFallbackReading(mbti: string, bloodType: string, result: TarotD
 
   return `### ✨ 타고난 본성과 숨겨진 강점
 당신은 **${bText}** 혈액형(${bloodType}형) 기질을 바탕으로, **${eiText}** 성향(${isE ? 'E' : 'I'})과 **${snText}** 성향(${isS ? 'S' : 'N'})을 지녔습니다. 
-당신의 타고난 에너지를 이끌어주는 양력 카드 **[${solarCard.name}]**(${solarCard.keyword})는 이러한 당신의 본질에 더 큰 빛을 비추고 있습니다. 
+당신의 타고난 에너지를 이끌어주는 양력 카드 **[${solarCard.id}. ${solarCard.name}]**(${solarCard.keyword})는 이러한 당신의 본질에 더 큰 빛을 비추고 있습니다. 
 > *"${solarCard.description}"*
 
 이 강렬한 빛은 당신의 타고난 혈액형과 특유의 MBTI 기질과 완벽하게 결합되어, 다른 사람들이 미처 보지 못하는 당신만의 독특한 매력과 잠재력으로 발현됩니다. 스스로의 강점을 깊이 믿고 나아가도 좋습니다.
 
 ### 🤝 관계와 소통의 지혜
 사람들과 교류할 때 당신은 주로 **${tfText}** 특성(${isT ? 'T' : 'F'})을 발휘합니다. 
-여기에 내면의 감정과 무의식을 상징하는 음력 카드 **[${lunarCard.name}]**(${lunarCard.keyword})의 기운이 어우러져, 관계를 맺는 당신의 모습에 깊이를 더해줍니다. 
+여기에 내면의 감정과 무의식을 상징하는 음력 카드 **[${lunarCard.id}. ${lunarCard.name}]**(${lunarCard.keyword})의 기운이 어우러져, 관계를 맺는 당신의 모습에 깊이를 더해줍니다. 
 > *"${lunarCard.description}"*
 
-특히 갈등이나 선택의 기로에 섰을 때, 당신의 첫 번째 중간수 **[${middleCard1.name}]**가 주는 메시지를 떠올려 보세요. **"${middleCard1.advice}"** 당신만의 방식에 타로의 혜안이 더해지면, 주변 사람들과 더 깊고 단단한 인연의 시너지를 낼 수 있을 것입니다.
+특히 갈등이나 선택의 기로에 섰을 때, 당신의 첫 번째 중간수 **[${middleCard1.id}. ${middleCard1.name}]**가 주는 메시지를 떠올려 보세요. **"${middleCard1.advice}"** 당신만의 방식에 타로의 혜안이 더해지면, 주변 사람들과 더 깊고 단단한 인연의 시너지를 낼 수 있을 것입니다.
 
 ### 🌟 잠재력 만개를 위한 특별한 메시지
 미래를 향해 걸어가는 당신의 발걸음은 **${jpText}** 에너지(${isJ ? 'J' : 'P'})로 채워져 있습니다. 
-당신이 가진 잠재력을 최고로 끌어올릴 수 있는 핵심 열쇠는 두 번째 중간수 **[${middleCard2.name}]**(${middleCard2.keyword})에 있습니다. 
+당신이 가진 잠재력을 최고로 끌어올릴 수 있는 핵심 열쇠는 두 번째 중간수 **[${middleCard2.id}. ${middleCard2.name}]**(${middleCard2.keyword})에 있습니다. 
 > *"${middleCard2.description}"*
 
 마침내 당신이 원하는 목표에 닿기 위해, 이 카드의 조언을 꼭 기억하세요. **"${middleCard2.advice}"**
@@ -91,10 +91,10 @@ export function MbtiView({ result, onBack }: MbtiViewProps) {
     setError(null);
 
     const targetCards = [
-      `양력 카드: ${TAROT_DECK[result.solarCard].name}`,
-      `음력 카드: ${TAROT_DECK[result.lunarCard].name}`,
-      `첫번째 중간수: ${TAROT_DECK[result.middleCard1].name}`,
-      `두번째 중간수: ${TAROT_DECK[result.middleCard2].name}`
+      `양력 카드: ${TAROT_DECK[result.solarCard].id}. ${TAROT_DECK[result.solarCard].name}`,
+      `음력 카드: ${TAROT_DECK[result.lunarCard].id}. ${TAROT_DECK[result.lunarCard].name}`,
+      `첫번째 중간수: ${TAROT_DECK[result.middleCard1].id}. ${TAROT_DECK[result.middleCard1].name}`,
+      `두번째 중간수: ${TAROT_DECK[result.middleCard2].id}. ${TAROT_DECK[result.middleCard2].name}`
     ];
 
     try {

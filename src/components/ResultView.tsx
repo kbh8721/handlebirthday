@@ -37,7 +37,7 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
   }, []);
 
   const handleShare = async () => {
-    const text = `내 인생을 안내하는 핸들생일타로\n\n음력카드: ${TAROT_DECK[result.lunarCard].name}\n양력카드: ${TAROT_DECK[result.solarCard].name}\n중간수1: ${TAROT_DECK[result.middleCard1].name}\n중간수2: ${TAROT_DECK[result.middleCard2].name}\n\n나의 운명 확인하기: ${window.location.origin}`;
+    const text = `내 인생을 안내하는 핸들생일타로\n\n음력카드: ${TAROT_DECK[result.lunarCard].id}. ${TAROT_DECK[result.lunarCard].name}\n양력카드: ${TAROT_DECK[result.solarCard].id}. ${TAROT_DECK[result.solarCard].name}\n중간수1: ${TAROT_DECK[result.middleCard1].id}. ${TAROT_DECK[result.middleCard1].name}\n중간수2: ${TAROT_DECK[result.middleCard2].id}. ${TAROT_DECK[result.middleCard2].name}\n\n나의 운명 확인하기: ${window.location.origin}`;
     if (navigator.share) {
       try {
         await navigator.share({ title: '핸들생일타로 결과', text });
@@ -83,7 +83,7 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
            <div className="absolute inset-0 backface-hidden [transform:rotateY(180deg)] bg-amber-50 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(217, 119, 6,0.15)] flex flex-col items-center justify-center">
               <img src={TAROT_DECK[c.id].imageUrl} alt={TAROT_DECK[c.id].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
               <div className="absolute bottom-0 w-full h-[15%] bg-amber-50 flex items-center justify-center border-t border-gold/30">
-                <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[c.id].name}</span>
+                <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[c.id].id}. {TAROT_DECK[c.id].name}</span>
               </div>
            </div>
          </motion.div>
@@ -124,10 +124,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                 <div>
                   <h4 className="text-lg text-stone-800 mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-cosmic-light" />
-                    내면의 흐름: 선천적 음력 ({TAROT_DECK[result.lunarCard].name})
+                    내면의 흐름: 선천적 음력 ({TAROT_DECK[result.lunarCard].id}. {TAROT_DECK[result.lunarCard].name})
                   </h4>
                   <p className="leading-relaxed font-sans font-light">
-                    당신은 선천적으로 <strong>{TAROT_DECK[result.lunarCard].name}</strong>의 에너지를 지니고 태어났습니다. 
+                    당신은 선천적으로 <strong>{TAROT_DECK[result.lunarCard].id}. {TAROT_DECK[result.lunarCard].name}</strong>의 에너지를 지니고 태어났습니다. 
                     이 음력 카드는 당신의 무의식적 기질과 유년기의 성향을 나타냅니다.
                     <br/><br/>
                     {TAROT_DECK[result.lunarCard].description}
@@ -142,10 +142,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                 <div className="bg-amber-50/40 p-6 rounded-xl border border-amber-300/50">
                   <h4 className="text-lg text-gold mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    성장의 징검다리: 첫번째 중간수 ({TAROT_DECK[result.middleCard1].name})
+                    성장의 징검다리: 첫번째 중간수 ({TAROT_DECK[result.middleCard1].id}. {TAROT_DECK[result.middleCard1].name})
                   </h4>
                   <p className="font-sans font-light leading-relaxed mb-4 text-stone-600">
-                    음력의 선천적 기질에서 벗어나 더 넓은 세상의 흐름으로 나아가는 첫 번째 관문입니다. 이 성장 과정에서는 <strong>{TAROT_DECK[result.middleCard1].name}</strong>의 에너지가 당신을 이끕니다.
+                    음력의 선천적 기질에서 벗어나 더 넓은 세상의 흐름으로 나아가는 첫 번째 관문입니다. 이 성장 과정에서는 <strong>{TAROT_DECK[result.middleCard1].id}. {TAROT_DECK[result.middleCard1].name}</strong>의 에너지가 당신을 이끕니다.
                   </p>
                   <p className="text-stone-700 italic text-sm text-center bg-white/50 p-4 rounded-lg shadow-inner">
                     "{TAROT_DECK[result.middleCard1].advice}"
@@ -159,10 +159,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                 <div className="bg-amber-50/40 p-6 rounded-xl border border-amber-300/50">
                   <h4 className="text-lg text-gold mb-3 flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-gold" />
-                    성숙의 징검다리: 두번째 중간수 ({TAROT_DECK[result.middleCard2].name})
+                    성숙의 징검다리: 두번째 중간수 ({TAROT_DECK[result.middleCard2].id}. {TAROT_DECK[result.middleCard2].name})
                   </h4>
                   <p className="font-sans font-light leading-relaxed mb-4 text-stone-600">
-                    첫 번째 징검다리를 거쳐 사회적 자아를 확립해가는 두 번째 과정입니다. <strong>{TAROT_DECK[result.middleCard2].name}</strong>의 지혜와 경험을 통해 당신은 최종 목적지에 다가서게 됩니다. 
+                    첫 번째 징검다리를 거쳐 사회적 자아를 확립해가는 두 번째 과정입니다. <strong>{TAROT_DECK[result.middleCard2].id}. {TAROT_DECK[result.middleCard2].name}</strong>의 지혜와 경험을 통해 당신은 최종 목적지에 다가서게 됩니다. 
                   </p>
                   <p className="text-stone-700 italic text-sm text-center bg-white/50 p-4 rounded-lg shadow-inner">
                     "{TAROT_DECK[result.middleCard2].advice}"
@@ -177,10 +177,10 @@ export function ResultView({ result, onReset, onViewYearly, onViewMbti }: Result
                 <div>
                   <h4 className="text-lg text-stone-800 mb-2 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-gold" />
-                    후반기 에너지: 궁극적 양력 ({TAROT_DECK[result.solarCard].name})
+                    후반기 에너지: 궁극적 양력 ({TAROT_DECK[result.solarCard].id}. {TAROT_DECK[result.solarCard].name})
                   </h4>
                   <p className="leading-relaxed font-sans font-light">
-                    두 번의 중간수 과정을 거치며 성숙해진 당신은, 마침내 후천적이고 궁극적인 삶의 방향인 <strong>{TAROT_DECK[result.solarCard].name}</strong>의 단계에 이르게 되었습니다. 이 양력 카드는 당신이 이 생에서 성취해야 할 숙제이자 완성된 자아를 의미합니다.
+                    두 번의 중간수 과정을 거치며 성숙해진 당신은, 마침내 후천적이고 궁극적인 삶의 방향인 <strong>{TAROT_DECK[result.solarCard].id}. {TAROT_DECK[result.solarCard].name}</strong>의 단계에 이르게 되었습니다. 이 양력 카드는 당신이 이 생에서 성취해야 할 숙제이자 완성된 자아를 의미합니다.
                     <br/><br/>
                     {TAROT_DECK[result.solarCard].description}
                   </p>

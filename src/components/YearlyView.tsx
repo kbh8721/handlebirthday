@@ -35,13 +35,13 @@ function generateFallbackYearlyReading(year: number, mbti: string, bloodType: st
 **${bText}** 혈액형(${bloodType}형) 기질과 당신의 고유한 **${mbti}** 성향이 만나, 올해는 매우 특별한 해가 될 것입니다. 두 타로 카드가 전하는 에너지는 당신의 본질을 밝히고 나아갈 길을 안내하고 있습니다.
 
 ### 🌱 상반기의 흐름과 내면의 변화
-상반기에는 **[${lunarCard.name}]**(${lunarCard.keyword}) 카드의 기운이 강합니다.
+상반기에는 **[${lunarCard.id}. ${lunarCard.name}]**(${lunarCard.keyword}) 카드의 기운이 강합니다.
 > *"${lunarCard.description}"*
 
 이 시기에는 **${isS ? '현실적인 감각을 활용하여' : '미래지향적인 직관을 바탕으로'}** 새로운 기회를 모색하는 흐름이 예상됩니다. 갈등이나 고민의 순간에는 **${isT ? '상황을 객관적으로 분석하는 힘' : '타인과 진심으로 교감하는 따뜻함'}**을 발휘해 상황을 풀어가 보세요.
 
 ### 🌟 하반기의 성취와 나아갈 방향
-하반기에는 **[${solarCard.name}]**(${solarCard.keyword}) 카드의 에너지가 당신을 이끕니다.
+하반기에는 **[${solarCard.id}. ${solarCard.name}]**(${solarCard.keyword}) 카드의 에너지가 당신을 이끕니다.
 > *"${solarCard.description}"*
 
 마침내 목표에 도달하기 위해, **"${solarCard.advice}"**라는 조언을 꼭 기억하세요. 당신이 가진 **${isJ ? '목표를 향한 체계적인 추진력' : '변화에 능동적인 유연한 적응력'}**을 무기로 삼는다면 머지않아 큰 성취를 이룰 수 있을 것입니다!`;
@@ -103,8 +103,8 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
           year: selectedYear,
           mbti: mbtiString,
           bloodType,
-          solarCard: TAROT_DECK[solarCardId].name,
-          lunarCard: TAROT_DECK[lunarCardId].name
+          solarCard: `${TAROT_DECK[solarCardId].id}. ${TAROT_DECK[solarCardId].name}`,
+          lunarCard: `${TAROT_DECK[lunarCardId].id}. ${TAROT_DECK[lunarCardId].name}`
         })
       });
       
@@ -141,7 +141,7 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
         <div className="relative w-16 h-24 bg-amber-50 border border-gold/40 rounded-md overflow-hidden flex flex-col items-center justify-center shadow-lg shadow-black/50">
           <img src={TAROT_DECK[cardId].imageUrl} alt={TAROT_DECK[cardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
           <div className="absolute bottom-0 w-full h-[18%] bg-amber-50 flex items-center justify-center border-t border-gold/30">
-            <span className="text-gold font-serif font-semibold tracking-tighter text-[8px] whitespace-nowrap overflow-hidden text-ellipsis px-1">{TAROT_DECK[cardId].name}</span>
+            <span className="text-gold font-serif font-semibold tracking-tighter text-[8px] whitespace-nowrap overflow-hidden text-ellipsis px-1">{TAROT_DECK[cardId].id}. {TAROT_DECK[cardId].name}</span>
           </div>
         </div>
       </div>
@@ -204,7 +204,7 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
               <div className="absolute inset-0 bg-amber-50 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(217, 119, 6,0.15)] flex flex-col items-center justify-center">
                 <img src={TAROT_DECK[lunarCardId].imageUrl} alt={TAROT_DECK[lunarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
                 <div className="absolute bottom-0 w-full h-[15%] bg-amber-50 flex items-center justify-center border-t border-gold/30">
-                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[lunarCardId].name}</span>
+                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[lunarCardId].id}. {TAROT_DECK[lunarCardId].name}</span>
                 </div>
               </div>
             </div>
@@ -229,7 +229,7 @@ export function YearlyView({ result, onBack }: YearlyViewProps) {
               <div className="absolute inset-0 bg-amber-50 border-2 border-gold rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(217, 119, 6,0.15)] flex flex-col items-center justify-center">
                 <img src={TAROT_DECK[solarCardId].imageUrl} alt={TAROT_DECK[solarCardId].name} referrerPolicy="no-referrer" className="w-full h-full object-cover transform scale-110" />
                 <div className="absolute bottom-0 w-full h-[15%] bg-amber-50 flex items-center justify-center border-t border-gold/30">
-                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[solarCardId].name}</span>
+                  <span className="text-gold font-serif font-semibold tracking-widest text-sm md:text-base">{TAROT_DECK[solarCardId].id}. {TAROT_DECK[solarCardId].name}</span>
                 </div>
               </div>
             </div>
